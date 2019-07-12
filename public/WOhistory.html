@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Workout Journal</title>
+  <meta name="description" content="Workout Journal App">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <!-- <script src="api.js"></script> -->
+  
+</head>
+
+  <body>
+    <h1>Workout Journal</h1>
+    <form>
+      <textarea name="formNoteText" id="formNoteText" cols="50" rows="8" maxlength="300"></textarea>
+      <select name="formColor" id="formColor">
+        <option value="none">Select Intensity</option>
+        <option value="red">Red-Intense</option>
+        <option value="green">Green-Great</option>
+        <option value="blue">Blue-Good</option>
+        <option value="yellow">Yellow-Ok</option>
+      </select>
+      <button id="formAddButton">Add note</button>
+    </form>
+    
+    <div id="notes"></div>
+    <script src="app.js"></script>
+
+  </body>
+
+</html>
