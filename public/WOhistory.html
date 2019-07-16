@@ -6,7 +6,7 @@
   <title>Workout Journal</title>
   <meta name="description" content="Workout Journal App">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
   <!-- <script src="api.js"></script> -->
   
 </head>
@@ -55,6 +55,8 @@
 
         let notesList = [];
 
+
+
         function save() {
           notesList = [];
           if(check_web_storage_support() == true) {
@@ -74,6 +76,24 @@
           }
           console.log(save);
         }
+      </script>
+
+      <script>
+      function addKeyboardDB(keyboard, callback){
+      var sql = "INSERT INTO workout(exercise) VALUES($1)";
+      var params = [workout.exercise, "helloWorld1"];
+        pool.query(sql, params, function(error, db_results){
+            if(error){
+                throw error;
+            } else {
+                var results = {
+                    success:true,
+                    list:db_results.rows
+                };
+                callback(null, results);
+            }
+        })
+      }
       </script>
 
   </body>
