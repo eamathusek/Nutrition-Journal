@@ -27,7 +27,7 @@
     
     <div id="notes">
       <button onclick="myFunction()">Edit Notes</button>
-      <button onclick="save()">Save Notes</button>
+      <button onclick="addJournaldb()">Save Notes</button>
     </div>
     <div id="result"></div>
     <script src="app.js"></script>
@@ -79,7 +79,7 @@
       </script>
 
       <script>
-      function addKeyboardDB(keyboard, callback){
+      function addJournaldb(keyboard, callback){
       var sql = "INSERT INTO workout(exercise) VALUES($1)";
       var params = [workout.exercise, "helloWorld1"];
         pool.query(sql, params, function(error, db_results){
