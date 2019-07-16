@@ -8,7 +8,7 @@ function getNotes(callback){
     var sql = "SELECT exercise FROM workout"
     pool.query(sql, function(error, db_info){
         if(error){
-            console.log("Error in query keyboard: ")
+            console.log("Error in query: ")
 			console.log(error);
 			callback(error, null);
         } 
@@ -17,7 +17,7 @@ function getNotes(callback){
                     success:true,
                     list:db_info.rows
             }
-            console.log("keyboard DB result: "+ JSON.stringify(db_info.rows))
+            console.log("Workout Journal result: "+ JSON.stringify(db_info.rows))
             callback(null, result);
         }
     })
