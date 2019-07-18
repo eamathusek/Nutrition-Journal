@@ -1,14 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <script src="api.js"></script>
-    <title>Exercise List</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Workout Journal</title>
+  <meta name="description" content="Workout Journal App">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <!-- <script src="api.js"></script> -->
+  
 </head>
-<body>
-    <ul id="meals" style="width:100%;height:400px"></ul>
-</body>
+
+  <body>
+    <h1>Meal Journal</h1>
+
+    <script src="https://platform.fatsecret.com/js?key=ab77df17154b44b29c3426470acf5ab8"></script>
+
+
+    <div id="my_container" class="fatsecret_container"></div>
+
+    <script>
+        fatsecret.setContainer("my_container");
+        fatsecret.setCanvas("home");
+    </script>
+
+
+    <form>
+      <textarea name="formNoteText" id="formNoteText" cols="50" rows="8" maxlength="300"></textarea>
+      <select name="formColor" id="formColor">
+        <option value="none">Select Intensity</option>
+        <option value="red">Red-Intense</option>
+        <option value="green">Green-Great</option>
+        <option value="blue">Blue-Good</option>
+        <option value="yellow">Yellow-Ok</option>
+      </select>
+      <button id="formAddButton" class="btn">Add note</button>
+    </form>
+    
+    <div id="notes">
+      <button onclick="myFunction()">Edit Notes</button>
+      <button onclick="addJournaldb()">Save Notes</button>
+    </div>
+    <div id="result"></div>
+    <script src="app.js"></script>
+
+    
+    <script>
+      function myFunction() {
+        document.getElementById("notes").contentEditable = true;
+      }
+    </script>
+
+      <script>
+        function check_web_storage_support() {
+          if(typeof(Storage) !== "undefined") {
+              return(true);
+          }
+          else {
+              alert("Web storage unsupported!");
+              return(false);
+          }
+          console.log(check_web_storage_support)
+        }
+
+        let notesList = [];
+
+
+
+        function save() {
+          notesList = [];
+          if(check_web_storage_support() == true) {
+            var notes = document.querySelectorAll(".note");
+
+            notes.forEach(function(note){
+              notesList.push(note.innerText)
+            })
+            console.log(notesList);
+            if(notesList.length >= 1) {
+              localStorage.setItem("notes", notesList);
+              alert("Journal Saved");
+            }
+            else {
+              alert("Nothing to save");
+            }
+          }
+          console.log(save);
+        }
+      </script>
+
+      <script>
+      function addJournaldb(keyboard, callback){
+      var sql = "INSERT INTO workout(exercise) VALUES($1)";
+      var params = [workout.exercise, "helloWorld1"];
+        pool.query(sql, params, function(error, db_results){
+            if(error){
+                throw error;
+            } else {
+                var results = {
+                    success:true,
+                    list:db_results.rows
+                };
+                callback(null, results);
+            }
+        })
+      }
+      </script>
+
+  </body>
+
 </html>
